@@ -9,3 +9,22 @@
 Также сообщать пользователю о невозможности деления на ноль,
 если он ввел 0 в качестве делителя.
 """
+while True:
+    check = 0
+    while check != '+' and check != '-' and check != '*' and check != '/':
+        check = input("Введите один из перечисленных знаков операции +, -, *, / или 0 для завершения работы \n")
+        if check == '0':
+            exit(0)
+    first = int(input('Введите первое число\n'))
+    second = int(input('Введите второе число число\n'))
+    if check == '+':
+        print(first + second)
+    if check == '*':
+        print(first * second)
+    if check == '-':
+        print(first - second)
+    if check == '/':
+        try:
+            print(first / second)
+        except ZeroDivisionError:
+            print("Ошибка на ноль делить нельзя")
