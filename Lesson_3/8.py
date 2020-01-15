@@ -4,3 +4,14 @@
 записывать ее в последнюю ячейку строки.
 В конце следует вывести полученную матрицу.
 """
+import random
+
+z = []
+for i in range(5):
+    z.append([])
+    for j in range(4):
+        z[i].append(random.randint(1, 100))
+    z[i].append(sum(z[i]))
+
+for i in z:
+    print(i)

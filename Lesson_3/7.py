@@ -3,3 +3,13 @@
 Они могут быть как равны между собой (оба являться минимальными),
  так и различаться.
 """
+import random
+
+z = []
+for i in range(15):
+    z.append(random.randint(-100, 100))
+
+a = min(z)
+z.remove(a)
+b = min(z)
+print(a, b)

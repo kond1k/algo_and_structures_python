@@ -5,3 +5,11 @@
 (или 0, 3, 4, 5 - если индексация начинается с нуля),
 т.к. именно в этих позициях первого массива стоят четные числа.
 """
+import random
+
+z = []
+for i in range(15):
+    z.append(random.randint(1, 100))
+
+print(z[::2])
+print([j for i, j in enumerate(z) if i % 2 == 0])
