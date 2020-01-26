@@ -7,3 +7,62 @@
 комментариев к коду. Также укажите в комментариях версию Python
 и разрядность вашей ОС.
 """
+
+# Ubuntu 19, 64 разрядная, Python 3.7
+
+from memory_profiler import profile
+import random
+
+
+# 3.	Сформировать из введенного числа обратное по порядку входящих в него
+# цифр и вывести на экран.
+@profile
+def from_end_to_start_rek(num):
+    if num / 10 < 1:
+        return num
+    return num % 10 * (10 ** (len(str(num)) - 1)) + from_end_to_start_rek(num // 10)
+
+
+@profile
+def from_end_to_start_cycle(num):
+    z = ''
+    while num:
+        z += str(num % 10)
+        num //= 10
+    return z
+
+
+# 9.	Найти максимальный элемент среди минимальных элементов столбцов матрицы.
+
+@profile
+def matrix_max(size):
+    z = []
+    for i in range(size):
+        z.append([])
+        for j in range(size):
+            z[i].append(random.randint(1, 100))
+
+    y = []
+    x = []
+    for i in range(len(z)):
+        y.append([])
+        for j in range(len(z)):
+            y[i].append(z[j][i])
+        x.append(min(y[i]))
+
+    print(max(x))
+
+
+if __name__ == "__main__":
+    from_end_to_start_rek(123456789)
+    from_end_to_start_cycle(123456789)
+    # На обе фукнкции не требуется доп память хватает начальных 37Mib, но из прошлых уроков я знаю, что цикл быстрее.
+    # Так же обратил внимание, что результат рекурсии выводится несколько раз,
+    # на каждый заход в рекурсию выделяется 37Mib?
+
+    matrix_max(5)
+    matrix_max(100)
+# При использовании матрицы 5*5 не требуется доп память свыше начальных 37,
+# с матрицей 100*100 уже происходит запрос памяти 0.1 Mib
+# Дальнейшее увеличение размеров матрицы увеличивает запрос памяти,
+# но не намного, например на 300*300 запрашиывает еще 1Mib
